@@ -1,0 +1,100 @@
+/* Define your font directly using @font-face or reference an installed font. */
+/* If "JetBrainsMono Nerd Font" is installed system-wide, you can just use it directly. */
+/* If not, ensure it's installed or specify a path using @font-face (more complex). */
+
+/* GENERAL WINDOW STYLING (OPTIONAL) */
+window {
+    /* If you were using 'background = screenshot' you might add blur here.
+       Since we're using 'background = /path/to/wallpaper.jpg' with 'blur' in config.ini,
+       this section is mostly for overlays or filters if needed. */
+    /* background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)); */
+}
+
+/* TIME LABEL ($TIME12) - Mimicking hyprlock's position 0, 150 (center, +150px from center) */
+#time-label {
+    font-family: "JetBrainsMono Nerd Font", monospace; /* Use your specified font */
+    font-size: 90px;                                  /* Matching hyprlock's font_size */
+    color: #cba6f7;                                   /* Matching hyprlock's rgb(cba6f7) */
+    text-align: center;                               /* Matching hyprlock's halign=center */
+
+    /* Positioning relative to the window center */
+    /* gtklock positions elements differently. For vertical offset: */
+    margin-top: 150px; /* Moves it 150px down from the center of the screen */
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+/* DATE LABEL (cmd[update:43200000] date +"%A, %d %B %Y") - Mimicking hyprlock's position 0, 50 (center, +50px from center) */
+#date-label {
+    font-family: "JetBrainsMono Nerd Font", monospace; /* Use your specified font */
+    font-size: 25px;                                  /* Matching hyprlock's font_size */
+    color: #cba6f7;                                   /* Matching hyprlock's rgb(cba6f7) */
+    text-align: center;                               /* Matching hyprlock's halign=center */
+
+    /* Positioning relative to the window center. This will be below the time. */
+    /* Since time-label has margin-top: 150px, this needs to be positioned relative to that.
+       A positive margin-top will push it down further. A negative margin-top will pull it up.
+       If your hyprlock config implies date is above the password field but below time,
+       you'll need to adjust relative to the time label.
+       Let's try absolute positioning for clarity, though it's more complex.
+       A simpler approach is to adjust general `margin-top` for the whole element,
+       or put time and date in a box, but this directly mimics hyprlock's position values.
+    */
+    margin-top: 50px; /* Moves it 50px down from the center of the screen */
+}
+
+/* INPUT FIELD */
+#input-entry {
+    font-family: "JetBrainsMono Nerd Font", monospace; /* Use your specified font */
+    font-size: 20px; /* Adjust font size if dots_size/spacing make the font look off */
+
+    /* Size: hyprlock's size = 300, 60 */
+    width: 300px;
+    min-height: 60px; /* Use min-height to allow padding */
+
+    /* Colors: */
+    background-color: #1e1e2e; /* Matching hyprlock's inner_color */
+    border: 3px solid #cba6f7; /* Matching hyprlock's outline_thickness and outer_color */
+    color: #cba6f7;            /* Matching hyprlock's font_color */
+    border-radius: 10px;       /* Aesthetic choice, hyprlock has no direct border-radius but this looks good */
+
+    /* Placeholder text (if any) */
+    /* gtklock uses the 'placeholder-text' option in config.ini */
+
+    /* Positioning: hyprlock's position = 0, -47 (center, -47px from center) */
+    margin-top: -47px; /* Moves it 47px up from the center of the screen */
+    padding: 10px; /* Add some internal padding */
+
+    /* Text alignment within the input field */
+    text-align: center;
+}
+
+/* Password dots styling */
+/* gtklock doesn't directly expose dots_size/spacing/center via CSS like hyprlock.
+   It uses the system's GTK theme for password masks. If you need custom dots,
+   you might need a GTK theme that provides that or compile gtklock with specific options.
+   The 'dots_size' and 'dots_spacing' from hyprlock are not directly translatable to CSS. */
+
+/* Colors for check, fail, capslock: gtklock defines these in config.ini or uses GTK themes */
+/* You can set these in config.ini directly:
+   check-color = #8be9fd   (example for $accent)
+   fail-color = #ff5555    (example for $red)
+   caps-color = #f1fa8c    (example for $yellow)
+*/
+
+/* Error message styling */
+#error-label {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 16px;
+    color: #ff5555; /* Red for failures */
+    text-align: center;
+}
+
+/* Caps Lock indicator styling */
+#caps-label {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 16px;
+    color: #f1fa8c; /* Yellow for capslock */
+    text-align: center;
+}
